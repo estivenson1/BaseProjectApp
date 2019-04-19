@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             Title="Login"
+             x:Class="BaseProjectApp.Views.LoginPage">
+    <ContentPage.Content>
+        <ScrollView BindingContext="{Binding LoginVM}">
+            <StackLayout Padding="8">
+                
+                <Image HeightRequest="150" Source="shop"> </Image>
+
+                <Label Text="Usuario:"/>
+                <Entry Text="{Binding Usuario}" Placeholder="Digite usuario"></Entry>
+
+                <Label Text="Contraseña:"/>
+                <Entry Text="{Binding Password}" Placeholder="Digite Contraseña" IsPassword="True"/>
+                
+                <!--<StackLayout
+                    HorizontalOptions="Center"
+                    Orientation="Horizontal">
+                    <Label
+                        Text="{i18n:Translate Remember}"
+                        VerticalOptions="Center">
+                    </Label>
+                    <Switch
+                        IsToggled="{Binding IsRemember}">
+                    </Switch>
+                </StackLayout>-->
+                <!--<Label
+                    HorizontalOptions="Center"
+                    Text="{i18n:Translate Forgot}"
+                    TextColor="Navy">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding RememberPasswordCommand }"/>
+                    </Label.GestureRecognizers>
+                </Label>-->
+                <ActivityIndicator
+                    IsRunning="{Binding IsRunning}"
+                    VerticalOptions="CenterAndExpand">
+                </ActivityIndicator>
+                
+                <StackLayout
+                    Orientation="Horizontal">
+                    <Button
+                        BackgroundColor="Navy"
+                        BorderRadius="23"
+                        Command="{Binding LoginCommand}"
+                        HeightRequest="46"
+                        HorizontalOptions="FillAndExpand"
+                        IsEnabled="{Binding IsEnabled}"
+                        Text="Login"
+                        TextColor="White">
+                    </Button>
+                    <Button
+                        BackgroundColor="Purple"
+                        BorderRadius="23"
+                        Command="{Binding RegisterCommand}"
+                        HeightRequest="46"
+                        HorizontalOptions="FillAndExpand"
+                        IsEnabled="{Binding IsEnabled}"
+                        Text="RegisterNewUser"
+                        TextColor="White">
+                    </Button>
+                </StackLayout>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -3,7 +3,8 @@
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace BaseProjectApp
 {
-    using BaseProjectApp.Views;
+    using ViewModels;
+    using Views;
     using Xamarin.Forms;
 
     public partial class App : Application
@@ -16,7 +17,9 @@ namespace BaseProjectApp
         {
             InitializeComponent();
 
-            MainPage = new MdiMasterDetailPage();
+            //MainPage = new MdiMasterDetailPage();
+            MainViewModel.GetInstance().LoginVM = new LoginViewModel();
+            this.MainPage = new NavigationPage(new LoginPage());
         }
 
         protected override void OnStart()
