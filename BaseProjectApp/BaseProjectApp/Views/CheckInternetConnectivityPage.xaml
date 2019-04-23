@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BaseProjectApp.Views.CheckInternetConnectivityPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Check Internet Connectivity"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+
+            <Button Text="ConnectivityPlugin" Clicked="btnConnectivityPlugin_Clicked"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -49,6 +49,7 @@
                 {
                     new MenuItemGeneric {Icon = "ic_info",PageName = "AboutPage",Title = "About"},
                     new MenuItemGeneric {Icon = "ic_person",PageName = "ProfilePage",Title = "Modify User"},
+                    new MenuItemGeneric {Icon = "ic_person",PageName = "CheckInternetConnectivityPage",Title = "CheckInternetConnectivity"},
                     new MenuItemGeneric {Icon = "ic_phonelink_setup",PageName = "SetupPage",Title = "Setup"},
                     new MenuItemGeneric {Icon = "ic_exit_to_app",PageName = "LoginPage",Title = "Close session"}
                 };
@@ -61,7 +62,7 @@
 
 
         #region Commands
-        //public ICommand SelectMenuMasterCommand => new RelayCommand<object>(this.SelectMenuMaster);
+        //public ICommand SelectMenuMasterCommand => new RelayCommand<object>(this.SelectMenuMaster);  
         public ICommand SelectMenuMasterCommand { get { return new RelayCommand<object>(this.SelectMenuMaster); } }
         private async void SelectMenuMaster(object parameter)
         {
@@ -74,6 +75,10 @@
                     break;
                 case "SetupPage":
                     await App.Navigator.PushAsync(new SetupPage());
+                    break;
+                case "CheckInternetConnectivityPage":
+                    //mainViewModel.Profile = new ProfileViewModel();
+                    await App.Navigator.PushAsync(new CheckInternetConnectivityPage());
                     break;
                 case "ProfilePage":
                     //mainViewModel.Profile = new ProfileViewModel();
