@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace BaseProjectApp.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class SetupPage : ContentPage
+	public partial class AsistentesRegistradosPage : ContentPage
 	{
-		public SetupPage ()
+		public AsistentesRegistradosPage ()
 		{
 			InitializeComponent ();
 		}

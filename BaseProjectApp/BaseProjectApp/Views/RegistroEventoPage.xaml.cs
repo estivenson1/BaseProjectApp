@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace BaseProjectApp.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ProfilePage : ContentPage
+	public partial class RegistroEventoPage : ContentPage
 	{
-		public ProfilePage ()
+		public RegistroEventoPage ()
 		{
 			InitializeComponent ();
 		}

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BaseProjectApp.Views.EntregaManillaPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame HasShadow="true" Margin="10,40,10,10" CornerRadius="5" BorderColor="Black" >
+                <StackLayout>
+                    <Label Text="Entrega de manillas" TextColor="Black" FontSize="Large" FontAttributes="Bold"/>
+                    <Frame HasShadow="true" Margin="10,20,10,10" CornerRadius="5" BorderColor="Black" >
+                        <StackLayout>
+                            <Label Text="Identificación" FontSize="Medium"  />
+                            <Entry Text="{Binding Usuario}" Placeholder="Digite identificación*" FontSize="Large" Keyboard="Numeric" />
+                            <Button Text="Buscar" HorizontalOptions="Center" BorderRadius="10" BackgroundColor="Transparent" BorderColor="Black" BorderWidth="1" />
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

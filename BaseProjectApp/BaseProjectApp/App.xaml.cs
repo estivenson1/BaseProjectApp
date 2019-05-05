@@ -17,6 +17,10 @@ namespace BaseProjectApp
         {
             InitializeComponent();
 
+#if DEBUG
+            HotReloader.Current.Start(this);
+#endif
+
             //MainPage = new MdiMasterDetailPage();
             MainViewModel.GetInstance().LoginVM = new LoginViewModel();
             this.MainPage = new NavigationPage(new LoginPage());

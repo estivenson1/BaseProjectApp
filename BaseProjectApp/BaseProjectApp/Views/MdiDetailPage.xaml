@@ -1,13 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             Title="Menú Frontal"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             Title="Registro de Evento"
              x:Class="BaseProjectApp.Views.MdiDetailPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to MdiDetailPage!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+    <ContentPage.Content>      
+        <ListView ItemsSource="{Binding MenuMaster}"  Margin="10,20,10,20" BackgroundColor="Gray" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+        SeparatorVisibility="None" HasUnevenRows="True" x:Name="MyLisView">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Frame HasShadow="true" Margin="5,5,5,5" CornerRadius="5"  >
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding BindingContext.MenuOpcionesCommand, Source={x:Reference MyLisView}}" CommandParameter="{Binding .}" />
+                            </Frame.GestureRecognizers>
+                            <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                                <Image Source="{Binding Icon}" />
+                                <Label Text="{Binding Title}" FontAttributes="Bold"  FontSize="Large" TextColor="Black"></Label>
+                            </StackLayout>
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </ContentPage.Content>
 </ContentPage>

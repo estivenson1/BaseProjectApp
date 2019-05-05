@@ -46,12 +46,12 @@
         private void LoadMenuMaster()
         {
             var menus = new List<MenuItemGeneric>
-                {
+                {                    
+                    new MenuItemGeneric {Icon = "ic_person",PageName = "RegistroEventoPage",Title = "Registro"},
+                    new MenuItemGeneric {Icon = "ic_person",PageName = "EntregaManillaPage",Title = "Manillas"},
+                    new MenuItemGeneric {Icon = "ic_phonelink_setup",PageName = "AsistentesRegistradosPage",Title = "Reporte "},
                     new MenuItemGeneric {Icon = "ic_info",PageName = "AboutPage",Title = "About"},
-                    new MenuItemGeneric {Icon = "ic_person",PageName = "ProfilePage",Title = "Modify User"},
-                    new MenuItemGeneric {Icon = "ic_person",PageName = "CheckInternetConnectivityPage",Title = "CheckInternetConnectivity"},
-                    new MenuItemGeneric {Icon = "ic_phonelink_setup",PageName = "SetupPage",Title = "Setup"},
-                    new MenuItemGeneric {Icon = "ic_exit_to_app",PageName = "LoginPage",Title = "Close session"}
+                    new MenuItemGeneric {Icon = "ic_exit_to_app",PageName = "LoginPage",Title = "Cerrar sesión"}
                 };
 
             this.MenuMaster = new ObservableCollection<MenuItemGeneric>(
@@ -70,19 +70,19 @@
             var menuMaster = parameter as MenuItemGeneric;
             switch (menuMaster.PageName)
             {
+                case "RegistroEventoPage":
+                    await App.Navigator.PushAsync(new RegistroEventoPage());
+                    break;
+                case "EntregaManillaPage":
+                    await App.Navigator.PushAsync(new EntregaManillaPage());
+                    break;
+                case "AsistentesRegistradosPage":
+                    //mainViewModel.Profile = new ProfileViewModel();
+                    await App.Navigator.PushAsync(new AsistentesRegistradosPage());
+                    break;
                 case "AboutPage":
+                    //mainViewModel.Profile = new ProfileViewModel();
                     await App.Navigator.PushAsync(new AboutPage());
-                    break;
-                case "SetupPage":
-                    await App.Navigator.PushAsync(new SetupPage());
-                    break;
-                case "CheckInternetConnectivityPage":
-                    //mainViewModel.Profile = new ProfileViewModel();
-                    await App.Navigator.PushAsync(new CheckInternetConnectivityPage());
-                    break;
-                case "ProfilePage":
-                    //mainViewModel.Profile = new ProfileViewModel();
-                    await App.Navigator.PushAsync(new ProfilePage());
                     break;
                 default:
                     //Settings.User = string.Empty;
@@ -94,6 +94,34 @@
                     MainViewModel.GetInstance().LoginVM = new LoginViewModel();
                     Application.Current.MainPage = new NavigationPage(new LoginPage());
                     break;
+            }
+        }
+
+        public ICommand MenuOpcionesCommand { get { return new RelayCommand<MenuItemGeneric>(this.MenuOpcionesCom); } }
+
+        private async void MenuOpcionesCom(MenuItemGeneric parameter)
+        {
+            switch (parameter.PageName)
+            {
+                case "RegistroEventoPage":
+                    await App.Navigator.PushAsync(new RegistroEventoPage());
+                    break;
+                case "EntregaManillaPage":
+                    await App.Navigator.PushAsync(new EntregaManillaPage());
+                    break;
+                case "AsistentesRegistradosPage":
+                    //mainViewModel.Profile = new ProfileViewModel();
+                    await App.Navigator.PushAsync(new AsistentesRegistradosPage());
+                    break;
+                case "AboutPage":
+                    //mainViewModel.Profile = new ProfileViewModel();
+                    await App.Navigator.PushAsync(new AboutPage());
+                    break;
+                default:
+                    MainViewModel.GetInstance().LoginVM = new LoginViewModel();
+                    Application.Current.MainPage = new NavigationPage(new LoginPage());
+                    break;
+
             }
         }
         #endregion
