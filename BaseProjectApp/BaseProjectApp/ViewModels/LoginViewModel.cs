@@ -1,5 +1,7 @@
 ﻿namespace BaseProjectApp.ViewModels
 {
+    using BaseProjectApp.Models;
+    using BaseProjectApp.Services;
     using BaseProjectApp.Views;
     using GalaSoft.MvvmLight.Command;
     using System.Windows.Input;
@@ -10,7 +12,7 @@
     {
 
         #region Attributes
-
+        ApiService api;
         #endregion
 
 
@@ -31,7 +33,9 @@
         #region Constructors
         public LoginViewModel()
         {
+            api = MainViewModel.GetInstance().api;
             IsRunning = true;
+
         }
         #endregion
 
@@ -48,7 +52,7 @@
             if (string.IsNullOrEmpty(this.Usuario))
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
+                    "Verificar datos",
                     "Digite usuario",
                     "Aceptar");
                 return;
@@ -57,11 +61,23 @@
             if (string.IsNullOrEmpty(this.Password))
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
+                    "Verificar datos",
                     "Digite contraseña",
                     "Aceptar");
                 return;
             }
+
+
+
+            var login = new LoginModel
+            {
+                Password = this.Password,
+                Username = this.Usuario
+            };
+
+
+            var token =  await api.Iniciar(login);
+            App.Token = token;    
 
             //this.IsRunning = true;
             //this.IsEnabled = false;
@@ -102,7 +118,7 @@
             //    token.Token);
 
             //var user = (User)response2.Result;
-            var mainViewModel = MainViewModel.GetInstance();
+
             //mainViewModel.User = user;
             //mainViewModel.Token = token;
             //mainViewModel.UserEmail = this.Email;
@@ -115,6 +131,16 @@
             //Settings.Token = JsonConvert.SerializeObject(token);
             //Settings.User = JsonConvert.SerializeObject(user);
 
+            if (!string.IsNullOrEmpty(token.Message))
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "Verificar datos",
+                    "Usuario y/o contraseña inválidos",
+                    "Aceptar");
+                return;
+            }
+
+            var mainViewModel = MainViewModel.GetInstance();
             Application.Current.MainPage = new MdiMasterDetailPage();
         }
         #endregion

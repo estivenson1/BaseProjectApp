@@ -9,18 +9,21 @@
     using System.Linq;
     using System.Windows.Input;
     using Xamarin.Forms;
+    using BaseProjectApp.Services;
 
     public class MainViewModel
     {
 
         #region Attributes
         private static MainViewModel instance;
+        public ApiService api;
         #endregion
 
 
         #region Properties
         public ObservableCollection<MenuItemGeneric> MenuMaster { get; set; }
         public LoginViewModel LoginVM { get; set; }
+        public AsistentesRegistradosViewModel AsistentesRegistradosVM { get; set; }
         #endregion
 
 
@@ -29,6 +32,7 @@
         {
             instance = this;
             this.LoadMenuMaster();
+            api = new ApiService();
         }
         public static MainViewModel GetInstance()
         {
@@ -110,7 +114,11 @@
                     await App.Navigator.PushAsync(new EntregaManillaPage());
                     break;
                 case "AsistentesRegistradosPage":
-                    //mainViewModel.Profile = new ProfileViewModel();
+                    //mainViewModel.Profile = new ProfileViewModel();  
+                    if (AsistentesRegistradosVM == null)
+                    {
+                        AsistentesRegistradosVM = new AsistentesRegistradosViewModel();
+                    }
                     await App.Navigator.PushAsync(new AsistentesRegistradosPage());
                     break;
                 case "AboutPage":

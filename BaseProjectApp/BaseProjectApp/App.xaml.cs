@@ -3,6 +3,7 @@
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace BaseProjectApp
 {
+    using Models;
     using ViewModels;
     using Views;
     using Xamarin.Forms;
@@ -10,8 +11,8 @@ namespace BaseProjectApp
     public partial class App : Application
     {
         public static NavigationPage Navigator { get; internal set; }
-
         public static MdiMasterDetailPage MdiMasterDetail { get; internal set; }
+        public static TokenModel Token { get; internal set; }
 
         public App()
         {
